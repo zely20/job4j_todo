@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS items (
-    id serial,
-    description varchar(500),
+    id serial PRIMARY KEY,
+    description text,
     created timestamp,
     is_done bool
 );
