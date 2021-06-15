@@ -1,10 +1,17 @@
 package ru.job4j.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+@Table(name = "items")
 public class Item {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
     private Timestamp created;
