@@ -29,19 +29,38 @@ public class HibernateImpl implements Store {
     @Override
     public List<Item> findAll() {
         List<Item> result;
-        try(Session session = sf.openSession()) {
-            session.beginTransaction();
-            result = session.createQuery("from ru.job4j.todo.model.Item").list();
-        }
+        Session session = sf.openSession();
+        session.beginTransaction();
+        result = session.createQuery("from ru.job4j.todo.model.Item").list();
+        session.close();
         return result;
     }
 
     @Override
     public void create(Item item) {
-        try (Session session = sf.openSession()) {
-            session.beginTransaction();
-            session.save(item);
-            session.getTransaction().commit();
-        }
+        Session session = sf.openSession();
+        session.beginTransaction();
+        session.save(item);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    @Override
+    public Item findById(Integer id) {
+        Session session = sf.openSession();
+        session.beginTransaction();
+        Item result = session.get(Item.class, id);
+        session.getTransaction().commit();
+        session.close();
+        return result;
+    }
+
+    @Override
+    public void update(Item item) {
+        Session session = sf.openSession();
+        session.beginTransaction();
+        session.update(item);
+        session.getTransaction().commit();
+        session.close();
     }
 }

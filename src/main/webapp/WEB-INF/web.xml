@@ -10,6 +10,10 @@
         <servlet-name>ShowAll</servlet-name>
         <servlet-class>ru.job4j.todo.servlet.ShowAllItemsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MarkReady</servlet-name>
+        <servlet-class>ru.job4j.todo.servlet.MarkReadyItemServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>AddTask</servlet-name>
@@ -18,6 +22,10 @@
     <servlet-mapping>
         <servlet-name>ShowAll</servlet-name>
         <url-pattern>/showAll</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MarkReady</servlet-name>
+        <url-pattern>/markReady</url-pattern>
     </servlet-mapping>
 
 </web-app>

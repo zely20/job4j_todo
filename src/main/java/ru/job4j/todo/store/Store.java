@@ -8,5 +8,7 @@ public interface Store {
 
     List<Item> findAll();
     void create (Item item);
+    Item findById(Integer id);
+    void update (Item item);
 
 }

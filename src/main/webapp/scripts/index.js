@@ -15,25 +15,37 @@ function addTask() {
             url: "./addtask",
             data: {description: $('#desc').val()},
             dataType: "json",
-        }))
+        }));
         location.reload()
     }
 };
+
 function showAll() {
     $.ajax({
         type: "GET",
         url: "./showAll",
         success: function (data) {
             $.each(data, function (index, element) {
+                let id = element["id"];
                 items += "<tr>"
-                    + "<td>" + element["id"] + "</td>"
+                    + "<td>" + id + "</td>"
                     + "<td>" + element["description"] + "</td>"
                     + "<td>" + element["created"] + "</td>"
                     + "<td>" + element["isDone"] + "</td>"
-                    + "</td>"
+                    + "<td>" + "<input class='form-check-input' type='checkbox' value='"+ id + "' id='is_ready' onchange='markReady(this)'>" + "</td>"
                     + "</tr>"
             });
             $('#items').html(items);
         }
     })
 };
+
+function markReady(button) {
+    $(button).prop('disabled', 'disabled');
+    ($.ajax({
+        type: "POST",
+        url: "./markReady",
+        data: {id: $(button).val()},
+        dataType: "json",
+    }));
+}
