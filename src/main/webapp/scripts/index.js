@@ -13,9 +13,27 @@ function addTask() {
         ($.ajax({
             type: "POST",
             url: "./addtask",
-            async: true,
             data: {description: $('#desc').val()},
             dataType: "json",
         }))
+        location.reload()
     }
+};
+function showAll() {
+    $.ajax({
+        type: "GET",
+        url: "./showAll",
+        success: function (data) {
+            $.each(data, function (index, element) {
+                items += "<tr>"
+                    + "<td>" + element["id"] + "</td>"
+                    + "<td>" + element["description"] + "</td>"
+                    + "<td>" + element["created"] + "</td>"
+                    + "<td>" + element["isDone"] + "</td>"
+                    + "</td>"
+                    + "</tr>"
+            });
+            $('#items').html(items);
+        }
+    })
 };

@@ -28,7 +28,12 @@ public class HibernateImpl implements Store {
 
     @Override
     public List<Item> findAll() {
-        return null;
+        List<Item> result;
+        try(Session session = sf.openSession()) {
+            session.beginTransaction();
+            result = session.createQuery("from ru.job4j.todo.model.Item").list();
+        }
+        return result;
     }
 
     @Override
