@@ -26,14 +26,24 @@ function showAll() {
         url: "./showAll",
         success: function (data) {
             $.each(data, function (index, element) {
+
                 let id = element["id"];
+                let description = element["description"];
+                let create = element["created"];
+                let done = element["isDone"];
                 items += "<tr>"
                     + "<td>" + id + "</td>"
-                    + "<td>" + element["description"] + "</td>"
-                    + "<td>" + element["created"] + "</td>"
-                    + "<td>" + element["isDone"] + "</td>"
-                    + "<td>" + "<input class='form-check-input' type='checkbox' value='"+ id + "' id='is_ready' onchange='markReady(this)'>" + "</td>"
-                    + "</tr>"
+                    + "<td>" + description + "</td>"
+                    + "<td>" + create + "</td>"
+                    + "<td>" + done + "</td>"
+                if (done) {
+                    items += "<td>" + "<input class='form-check-input' type='checkbox' value='" + id + "' id='is_ready' onchange='markReady(this)'>" + "</td>"
+                + "</tr>"
+            } else
+            {
+                items += "<td>" + "<input class='form-check-input' type='checkbox' disabled checked id='is_ready' onchange='markReady(this)'>" + "</td>"
+                + "</tr>"
+            }
             });
             $('#items').html(items);
         }
