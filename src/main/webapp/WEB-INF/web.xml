@@ -2,6 +2,31 @@
         "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 <web-app>
+    <servlet>
+        <servlet-name>AddTask</servlet-name>
+        <servlet-class>ru.job4j.todo.servlet.AddTaskServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowAll</servlet-name>
+        <servlet-class>ru.job4j.todo.servlet.ShowAllItemsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MarkReady</servlet-name>
+        <servlet-class>ru.job4j.todo.servlet.MarkReadyItemServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddTask</servlet-name>
+        <url-pattern>/addtask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowAll</servlet-name>
+        <url-pattern>/showAll</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MarkReady</servlet-name>
+        <url-pattern>/markReady</url-pattern>
+    </servlet-mapping>
 
 </web-app>
         
