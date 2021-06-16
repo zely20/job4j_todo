@@ -31,47 +31,76 @@ public class HibernateImpl implements Store {
         List<Item> result;
         Session session = sf.openSession();
         session.beginTransaction();
-        result = session.createQuery("from ru.job4j.todo.model.Item").list();
-        session.close();
-        return result;
+        try {
+            result = session.createQuery("from ru.job4j.todo.model.Item").list();
+            return result;
+        } catch (final Exception e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public List<Item> findAllCurrentTask() {
         List<Item> result;
         Session session = sf.openSession();
-        session.beginTransaction();
-        result = session.createQuery("from ru.job4j.todo.model.Item where is_done = 'true'").list();
-        session.close();
-        return result;
+        try {
+            session.beginTransaction();
+            result = session.createQuery("from ru.job4j.todo.model.Item where is_done = 'true'").list();
+            return result;
+        } catch (final Exception e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public void create(Item item) {
         Session session = sf.openSession();
-        session.beginTransaction();
-        session.save(item);
-        session.getTransaction().commit();
-        session.close();
+        try {
+            session.beginTransaction();
+            session.save(item);
+            session.getTransaction().commit();
+        } catch (final Exception e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public Item findById(Integer id) {
         Session session = sf.openSession();
-        session.beginTransaction();
-        Item result = session.get(Item.class, id);
-        session.getTransaction().commit();
-        session.close();
-        return result;
+        try {
+            session.beginTransaction();
+            Item result = session.get(Item.class, id);
+            session.getTransaction().commit();
+            return result;
+        } catch (final Exception e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public void update(Item item) {
         Session session = sf.openSession();
-        session.beginTransaction();
-        session.update(item);
-        session.getTransaction().commit();
-        session.close();
+        try {
+            session.beginTransaction();
+            session.update(item);
+            session.getTransaction().commit();
+        } catch (final Exception e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
     }
-
 }
