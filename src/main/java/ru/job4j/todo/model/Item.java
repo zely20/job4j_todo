@@ -13,8 +13,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
-    @Temporal(TemporalType.DATE)
-    private Date created;
+    private Timestamp created;
     @Column(name = "is_done")
     private Boolean isDone;
 
@@ -23,11 +22,11 @@ public class Item {
 
     public Item(String description) {
         this.description = description;
-        this.created = new Date(System.currentTimeMillis());
+        this.created = new Timestamp(System.currentTimeMillis());
         this.isDone = true;
     }
 
-    public Item(Integer id, String description, Date created, Boolean isDone) {
+    public Item(Integer id, String description, Timestamp created, Boolean isDone) {
         this.id = id;
         this.description = description;
         this.created = created;
@@ -50,11 +49,11 @@ public class Item {
         this.description = description;
     }
 
-    public Date getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
