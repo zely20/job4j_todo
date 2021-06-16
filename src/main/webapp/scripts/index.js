@@ -22,6 +22,7 @@ function addTask() {
 
 function showAll() {
     let url;
+    let items = "";
     if($('#all_task').is(':checked')){
         url = "./showAll";
     } else {
@@ -63,8 +64,4 @@ function markReady(button) {
         data: {id: $(button).val()},
         dataType: "json",
     }));
-}
-
-function checkedAllTask() {
-    $('#all_task').is(':checked');
 }
