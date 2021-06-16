@@ -47,8 +47,12 @@
                 <form>
                     <h4>Ваши задачи</h4>
                     <p><label>
-                        <button type="button" class="btn btn-primary" onclick="showAll()">Показать все задачи</button>
+                        <button type="button" class="btn btn-primary" onclick="showAll()">Показать задачи</button>
                     </label> </p>
+                    <input class='form-check-input' type='checkbox' id='all_task'>
+                    <label class="form-check-label" for="all_task">
+                        Show All Task
+                    </label>
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -61,7 +65,6 @@
                         </thead>
                         <tbody id="items"></tbody>
                     </table>
-                    <button type="button" class="btn btn-primary" onclick="markAsDone()">Отметить как выполненные</button>
                 </form>
             </div>
         </div>

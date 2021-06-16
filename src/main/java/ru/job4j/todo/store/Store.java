@@ -7,6 +7,7 @@ import java.util.List;
 public interface Store {
 
     List<Item> findAll();
+    List<Item> findAllCurrentTask();
     void create (Item item);
     Item findById(Integer id);
     void update (Item item);

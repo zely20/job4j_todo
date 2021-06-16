@@ -21,12 +21,17 @@ function addTask() {
 };
 
 function showAll() {
+    let url;
+    if($('#all_task').is(':checked')){
+        url = "./showAll";
+    } else {
+        url = "./showCurrentTask";
+    }
     $.ajax({
         type: "GET",
-        url: "./showAll",
+        url: url,
         success: function (data) {
             $.each(data, function (index, element) {
-
                 let id = element["id"];
                 let description = element["description"];
                 let create = element["created"];
@@ -58,4 +63,8 @@ function markReady(button) {
         data: {id: $(button).val()},
         dataType: "json",
     }));
+}
+
+function checkedAllTask() {
+    $('#all_task').is(':checked');
 }

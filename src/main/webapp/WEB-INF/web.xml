@@ -14,6 +14,10 @@
         <servlet-name>MarkReady</servlet-name>
         <servlet-class>ru.job4j.todo.servlet.MarkReadyItemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowCurrentTask</servlet-name>
+        <servlet-class>ru.job4j.todo.servlet.ShowCurrentTaskServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>AddTask</servlet-name>
@@ -26,6 +30,10 @@
     <servlet-mapping>
         <servlet-name>MarkReady</servlet-name>
         <url-pattern>/markReady</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowCurrentTask</servlet-name>
+        <url-pattern>/showCurrentTask</url-pattern>
     </servlet-mapping>
 
 </web-app>

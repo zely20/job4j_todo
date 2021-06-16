@@ -37,6 +37,16 @@ public class HibernateImpl implements Store {
     }
 
     @Override
+    public List<Item> findAllCurrentTask() {
+        List<Item> result;
+        Session session = sf.openSession();
+        session.beginTransaction();
+        result = session.createQuery("from ru.job4j.todo.model.Item where is_done = 'true'").list();
+        session.close();
+        return result;
+    }
+
+    @Override
     public void create(Item item) {
         Session session = sf.openSession();
         session.beginTransaction();
@@ -63,4 +73,5 @@ public class HibernateImpl implements Store {
         session.getTransaction().commit();
         session.close();
     }
+
 }
