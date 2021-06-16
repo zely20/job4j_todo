@@ -27,7 +27,7 @@ public class Item {
         this.isDone = true;
     }
 
-    public Item(Integer id, String description, Timestamp created, Boolean isDone) {
+    public Item(Integer id, String description, Date created, Boolean isDone) {
         this.id = id;
         this.description = description;
         this.created = created;
