@@ -8,6 +8,7 @@
     <artifactId>job4j_todo</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+
     <properties>
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
@@ -27,6 +28,7 @@
         </properties>
     </profile>
     </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.postgresql</groupId>
