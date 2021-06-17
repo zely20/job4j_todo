@@ -2,6 +2,7 @@ package ru.job4j.todo.store;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import ru.job4j.todo.model.Item;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class HibernateImpl implements Store {
 
@@ -28,65 +30,28 @@ public class HibernateImpl implements Store {
 
     @Override
     public List<Item> findAll() {
-        List<Item> result;
-        Session session = sf.openSession();
-        session.beginTransaction();
-        try {
-            result = session.createQuery("from ru.job4j.todo.model.Item").list();
-            return result;
-        } catch (final Exception e) {
-            session.getTransaction().rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
+        return this.tx(
+                session -> session.createQuery("from Item").list()
+        );
     }
 
     @Override
     public List<Item> findAllCurrentTask() {
-        List<Item> result;
-        Session session = sf.openSession();
-        try {
-            session.beginTransaction();
-            result = session.createQuery("from ru.job4j.todo.model.Item where is_done = 'true'").list();
-            return result;
-        } catch (final Exception e) {
-            session.getTransaction().rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
+        return this.tx(
+                session -> session.createQuery("from ru.job4j.todo.model.Item where is_done = 'true'").list()
+        );
     }
 
     @Override
     public void create(Item item) {
-        Session session = sf.openSession();
-        try {
-            session.beginTransaction();
-            session.save(item);
-            session.getTransaction().commit();
-        } catch (final Exception e) {
-            session.getTransaction().rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
+        this.tx(session -> session.save(item));
     }
 
     @Override
     public Item findById(Integer id) {
-        Session session = sf.openSession();
-        try {
-            session.beginTransaction();
-            Item result = session.get(Item.class, id);
-            session.getTransaction().commit();
-            return result;
-        } catch (final Exception e) {
-            session.getTransaction().rollback();
-            throw e;
-        } finally {
-            session.close();
-        }
+        return this.tx(
+                session -> session.get(Item.class, id)
+        );
     }
 
     @Override
@@ -96,6 +61,21 @@ public class HibernateImpl implements Store {
             session.beginTransaction();
             session.update(item);
             session.getTransaction().commit();
+        } catch (final Exception e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+
+    private <T> T tx(final Function<Session, T> command) {
+        final Session session = sf.openSession();
+        final Transaction tx = session.beginTransaction();
+        try {
+            T rsl = command.apply(session);
+            tx.commit();
+            return rsl;
         } catch (final Exception e) {
             session.getTransaction().rollback();
             throw e;
