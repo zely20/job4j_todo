@@ -9,9 +9,24 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ManyToOne(targetEntity = Item.class)
     private Integer id;
     private String name;
     private String password;
+
+    public User(Integer id, String name, String password) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public User() {
+    }
 
     public Integer getId() {
         return id;

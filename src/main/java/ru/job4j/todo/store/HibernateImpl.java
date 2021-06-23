@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.job4j.todo.model.Item;
@@ -73,7 +74,18 @@ public class HibernateImpl implements Store {
     @Override
     public User findByName(String name){
         return this.tx(
-                session -> session.get(User.class, name)
+                session -> {
+                    Query<User> query = session.createQuery("FROM User u where u.name=:name", User.class);
+                    query.setParameter("name", name);
+                    return query.uniqueResult();
+                }
+        );
+    }
+
+    @Override
+    public User saveUser(User user) {
+        return (User) this.tx(
+                session -> session.save(user)
         );
     }
 

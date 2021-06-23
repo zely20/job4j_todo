@@ -13,5 +13,6 @@ public interface Store {
     Item findById(Integer id);
     void update (Item item);
     User findByName(String name);
+    User saveUser(User user);
 
 }
