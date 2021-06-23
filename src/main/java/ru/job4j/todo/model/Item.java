@@ -16,6 +16,9 @@ public class Item {
     private Timestamp created;
     @Column(name = "is_done")
     private Boolean isDone;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Item() {
     }
