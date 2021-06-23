@@ -9,6 +9,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.job4j.todo.model.Item;
+import ru.job4j.todo.model.User;
 
 import java.util.List;
 import java.util.function.Function;
@@ -67,6 +68,13 @@ public class HibernateImpl implements Store {
         } finally {
             session.close();
         }
+    }
+
+    @Override
+    public User findByName(String name){
+        return this.tx(
+                session -> session.get(User.class, name)
+        );
     }
 
     private <T> T tx(final Function<Session, T> command) {

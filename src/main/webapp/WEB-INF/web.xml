@@ -2,6 +2,15 @@
         "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 <web-app>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ru.job4j.todo.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>AddTask</servlet-name>
         <servlet-class>ru.job4j.todo.servlet.AddTaskServlet</servlet-class>
@@ -17,6 +26,10 @@
     <servlet>
         <servlet-name>ShowCurrentTask</servlet-name>
         <servlet-class>ru.job4j.todo.servlet.ShowCurrentTaskServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AuthServlet</servlet-name>
+        <servlet-class>ru.job4j.todo.servlet.AuthServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -34,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>ShowCurrentTask</servlet-name>
         <url-pattern>/showCurrentTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthServlet</servlet-name>
+        <url-pattern>/auth.do</url-pattern>
     </servlet-mapping>
 
 </web-app>
