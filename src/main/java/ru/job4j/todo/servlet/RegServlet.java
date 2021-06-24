@@ -20,9 +20,9 @@ public class RegServlet extends HttpServlet {
             req.getRequestDispatcher("reg.html").forward(req, resp);
         } else {
             HibernateImpl.instOf().saveUser(
-                    new User(req.getParameter("name"), req.getParameter("password"))
+                    new User(0, req.getParameter("name"), req.getParameter("password"))
             );
-            resp.sendRedirect(req.getContextPath());
+            resp.sendRedirect("login.html");
         }
     }
 }

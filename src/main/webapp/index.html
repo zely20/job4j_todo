@@ -37,6 +37,7 @@
             <div class="mb-6">
                 <label for="desc" class="form-label">Enter your task</label>
                 <input type="text" class="form-control" id="desc">
+                <p id="name_user"><p>
             </div>
         </div>
         <button type="button" class="btn btn-primary" onclick="addTask()">Add Task</button>
@@ -69,8 +70,10 @@
             </div>
         </div>
     </div>
-
-
 </div>
+<script>
+    let nameUser = ;
+    $('#name_user').html(nameUser);
+</script>
 </body>
 </html>
