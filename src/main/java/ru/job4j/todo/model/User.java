@@ -9,7 +9,6 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToOne(targetEntity = Item.class)
     private Integer id;
     private String name;
     private String password;
