@@ -83,8 +83,8 @@ public class HibernateImpl implements Store {
     }
 
     @Override
-    public User saveUser(User user) {
-        return (User) this.tx(
+    public void saveUser(User user) {
+        this.tx(
                 session -> session.save(user)
         );
     }

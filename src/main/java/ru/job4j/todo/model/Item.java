@@ -22,10 +22,11 @@ public class Item {
     public Item() {
     }
 
-    public Item(String description) {
+    public Item(String description, User user) {
         this.description = description;
         this.created = new Timestamp(System.currentTimeMillis());
         this.isDone = true;
+        this.user = user;
     }
 
     public Item(Integer id, String description, Timestamp created, Boolean isDone) {
