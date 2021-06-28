@@ -37,7 +37,7 @@ function showAll() {
                 let description = element["description"];
                 let create = element["created"];
                 let done = element["isDone"];
-                let author = element["user.name"];
+                let author = element["user"].name;
                 items += "<tr>"
                     + "<td>" + id + "</td>"
                     + "<td>" + description + "</td>"
