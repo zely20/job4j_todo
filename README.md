@@ -21,7 +21,6 @@ Maven
 
 Travis CI
 
-![ScreenShot](images/image_4.jpg)
 ![ScreenShot](images/image_1.jpg)
 ![ScreenShot](images/image_2.jpg)
 ![ScreenShot](images/image_3.jpg)
