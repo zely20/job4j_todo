@@ -9,6 +9,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.job4j.todo.model.Category;
 import ru.job4j.todo.model.Item;
 import ru.job4j.todo.model.User;
 
@@ -80,6 +81,12 @@ public class HibernateImpl implements Store {
                     return query.uniqueResult();
                 }
         );
+    }
+
+    @Override
+    public List<Category> getCategories() {
+        return this.tx(
+            session -> session.createQuery("from Category").list());
     }
 
     @Override

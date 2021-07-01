@@ -78,3 +78,20 @@ function getUserName(){
         }
     }));
 }
+
+function getCategories() {
+    let result;
+    ($.ajax({
+        type: "GET",
+        usr: "./getcategories",
+        success: function (data) {
+            $.each(data, function (index, element){
+                let id = element.id;
+                let name = element.name;
+                result += "<option value='" + id + "'>" + name + "</option>";
+            })
+            $('#cIds').html(result);
+         }
+        }
+    ))
+}

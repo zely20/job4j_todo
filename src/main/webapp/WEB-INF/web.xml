@@ -39,6 +39,10 @@
         <servlet-name>GetUserName</servlet-name>
         <servlet-class>ru.job4j.todo.servlet.UserNameServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetCategories</servlet-name>
+        <servlet-class>ru.job4j.todo.servlet.CategoriesServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>AddTask</servlet-name>
@@ -67,6 +71,10 @@
     <servlet-mapping>
         <servlet-name>GetUserName</servlet-name>
         <url-pattern>/getusername</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCategories</servlet-name>
+        <url-pattern>/getcategories</url-pattern>
     </servlet-mapping>
 
 </web-app>

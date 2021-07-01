@@ -2,6 +2,8 @@ package ru.job4j.todo.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +20,10 @@ public class Item {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "category_id")
+    private List<Category> categories = new ArrayList<>();
+
 
     public Item() {
     }
@@ -66,6 +72,14 @@ public class Item {
 
     public void setDone(Boolean done) {
         isDone = done;
+    }
+
+    public void addCity(Category category) {
+        this.categories.add(category);
+    }
+
+    public List<Category> getCategories() {
+        return categories;
     }
 
     @Override
