@@ -88,7 +88,7 @@ function getCategories() {
             $.each(data, function (index, element){
                 let id = element.id;
                 let name = element.name;
-                result += "<option value='" + id + "'>" + name + "</option>";
+                result += "<option value=" + id + ">" + name + "</option>";
             })
             $('#cIds').html(result);
          }
