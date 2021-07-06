@@ -13,7 +13,7 @@ function addTask() {
         ($.ajax({
             type: "POST",
             url: "./addtask",
-            data: {description: $('#desc').val()},
+            data: {description: $('#desc').val(), idcat: $('#cIds').val().join(",")},
             dataType: "json",
         }));
         location.reload()
@@ -83,11 +83,11 @@ function getCategories() {
     let result;
     ($.ajax({
         type: "GET",
-        usr: "./getcategories",
+        url: "./getcategories",
         success: function (data) {
             $.each(data, function (index, element){
-                let id = element.id;
-                let name = element.name;
+                let id = element["id"];
+                let name = element["name"];
                 result += "<option value=" + id + ">" + name + "</option>";
             })
             $('#cIds').html(result);

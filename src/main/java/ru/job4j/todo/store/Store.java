@@ -10,7 +10,7 @@ public interface Store {
 
     List<Item> findAll();
     List<Item> findAllCurrentTask();
-    void create (Item item);
+    void create (Item item,  String [] categories);
     Item findById(Integer id);
     void update (Item item);
     User findByName(String name);

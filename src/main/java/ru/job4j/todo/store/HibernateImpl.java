@@ -34,20 +34,26 @@ public class HibernateImpl implements Store {
     @Override
     public List<Item> findAll() {
         return this.tx(
-                session -> session.createQuery("from Item").list()
+                session -> session.createQuery("select distinct i from Item i join fetch i.categories").list()
         );
     }
 
     @Override
     public List<Item> findAllCurrentTask() {
         return this.tx(
-                session -> session.createQuery("from ru.job4j.todo.model.Item where is_done = 'true'").list()
+                session -> session.createQuery("select distinct i from Item i join fetch i.categories where is_done = 'true'").list()
         );
     }
 
     @Override
-    public void create(Item item) {
-        this.tx(session -> session.save(item));
+    public void create(Item item, String [] categories) {
+        this.tx(session -> {
+        for (String id : categories) {
+            item.addCategory(session.load(Category.class, Integer.parseInt(id)));
+        }
+                session.save(item);
+                return null;
+        });
     }
 
     @Override

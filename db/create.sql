@@ -12,3 +12,12 @@ CREATE TABLE IF NOT EXISTS users
     name     text,
     password text
 );
+
+create table if not exists categories (
+                            id serial PRIMARY KEY,
+                            name text)
+;
+
+insert into categories values (1, 'WORK');
+insert into categories values (2, 'HOME');
+insert into categories values (3, 'BISINESS');

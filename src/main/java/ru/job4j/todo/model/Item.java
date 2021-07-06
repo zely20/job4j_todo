@@ -73,6 +73,7 @@ public class Item {
     public void setDone(Boolean done) {
         isDone = done;
     }
+    
 
     public void addCity(Category category) {
         this.categories.add(category);
@@ -96,5 +97,9 @@ public class Item {
     @Override
     public int hashCode() {
         return Objects.hash(id, description, created, isDone);
+    }
+
+    public void addCategory(Category category) {
+        categories.add(category);
     }
 }
