@@ -17,7 +17,8 @@ public class AddTaskServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("user");
-        String [] categories = req.getParameter("idcat").split(",");
+        String [] categories = req.getParameterValues("idcat[]");
+        System.out.println(categories);
         HibernateImpl.instOf().create(new Item(req.getParameter("description"), user), categories);
     }
 }

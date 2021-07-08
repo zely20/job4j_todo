@@ -13,7 +13,7 @@ function addTask() {
         ($.ajax({
             type: "POST",
             url: "./addtask",
-            data: {description: $('#desc').val(), idcat: $('#cIds').val().join(",")},
+            data: {description: $('#desc').val(), idcat: $('#cIds').val()},
             dataType: "json",
         }));
         location.reload()
@@ -42,7 +42,7 @@ function showAll() {
                     + "<td>" + id + "</td>"
                     + "<td>" + description + "</td>"
                     + "<td>" + create + "</td>"
-                    + "<td>" + done + "</td>"
+                    + "<td>" + done + "</td>";
                 if (done) {
                     items += "<td>" + "<input class='form-check-input' type='checkbox' value='" + id + "' id='is_ready' onchange='markReady(this)'>" + "</td>"
                         + "<td>" + author + "</td>"
