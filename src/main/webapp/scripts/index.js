@@ -6,7 +6,7 @@ function validation() {
         } else {
             return true
         }
-    };
+    }
 
 function addTask() {
     if (validation()) {
@@ -18,7 +18,7 @@ function addTask() {
         }));
         location.reload()
     }
-};
+}
 
 function showAll() {
     let url;
@@ -57,7 +57,7 @@ function showAll() {
             $('#items').html(items);
         }
     })
-};
+}
 
 function markReady(button) {
     $(button).prop('disabled', 'disabled');

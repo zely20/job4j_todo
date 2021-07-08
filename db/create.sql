@@ -18,6 +18,14 @@ create table if not exists categories (
                             name text)
 ;
 
+CREATE TABLE items_categories(
+                                     item_id int NOT NULL,
+                                     categories_id int NOT NULL,
+                                     FOREIGN KEY (item_id) REFERENCES items(id),
+                                     FOREIGN KEY (categories_id) REFERENCES categories(id),
+                                     UNIQUE (item_id, categories_id)
+);
+
 insert into categories values (1, 'WORK');
 insert into categories values (2, 'HOME');
 insert into categories values (3, 'BISINESS');
