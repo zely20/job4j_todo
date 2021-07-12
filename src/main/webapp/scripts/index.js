@@ -33,11 +33,17 @@ function showAll() {
         url: url,
         success: function (data) {
             $.each(data, function (index, element) {
+                let categories = "";
+                $.each(element["categories"], function ( index, element)
+                {
+                    categories += element["name"] + " ";
+                });
                 let id = element["id"];
                 let description = element["description"];
                 let create = element["created"];
                 let done = element["isDone"];
                 let author = element["user"].name;
+
                 items += "<tr>"
                     + "<td>" + id + "</td>"
                     + "<td>" + description + "</td>"
@@ -47,12 +53,12 @@ function showAll() {
                     items += "<td>" + "<input class='form-check-input' type='checkbox' value='" + id + "' id='is_ready' onchange='markReady(this)'>" + "</td>"
                         + "<td>" + author + "</td>"
                         + "</tr>"
-            } else
-            {
+            } else {
                 items += "<td>" + "<input class='form-check-input' type='checkbox' disabled checked id='is_ready' onchange='markReady(this)'>" + "</td>"
                     + "<td>" + author + "</td>"
                     + "</tr>"
             }
+                items += "<td>" + categories + "</td>";
             });
             $('#items').html(items);
         }
