@@ -52,13 +52,14 @@ function showAll() {
                 if (done) {
                     items += "<td>" + "<input class='form-check-input' type='checkbox' value='" + id + "' id='is_ready' onchange='markReady(this)'>" + "</td>"
                         + "<td>" + author + "</td>"
-                        + "</tr>"
+
             } else {
                 items += "<td>" + "<input class='form-check-input' type='checkbox' disabled checked id='is_ready' onchange='markReady(this)'>" + "</td>"
                     + "<td>" + author + "</td>"
-                    + "</tr>"
+
             }
-                items += "<td>" + categories + "</td>";
+                items += "<td>" + categories + "</td>"
+                 + "</tr>";
             });
             $('#items').html(items);
         }
